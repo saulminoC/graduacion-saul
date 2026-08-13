@@ -1,0 +1,37 @@
+/* Estilos globales y reseteo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Un fondo claro elegante que haga resaltar el azul marino del sobre */
+  background-color: #f8f9fa; 
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.contenedor-invitacion {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Animación para cuando aparecen los detalles de la fiesta */
+.seccion-revelada {
+  animation: aparecerSuave 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes aparecerSuave {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,127 @@
+.detalles-contenedor {
+  padding: 100px 20px;
+  background-color: #fdfbf7; /* Fondo marfil continuo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.detalles-header {
+  text-align: center;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detalles-subtitulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: #1a2a5c;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.detalles-universidad {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: #b58d34;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.linea-decorativa {
+  width: 50px;
+  height: 1px;
+  background-color: #c9a756;
+  margin-top: 30px;
+}
+
+/* --- LA TARJETA PRINCIPAL --- */
+.tarjeta-unica-evento {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05); /* Sombra súper difuminada */
+  border-radius: 2px;
+}
+
+.tarjeta-borde-interno {
+  border: 1px solid #e5d8b8;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.icono-elegante {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.titulo-evento {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #1a2a5c;
+  margin-bottom: 45px;
+  letter-spacing: 2px;
+}
+
+/* --- BLOQUES DE INFORMACIÓN --- */
+.info-bloque {
+  margin-bottom: 35px;
+  width: 100%;
+}
+
+.etiqueta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.texto-principal {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #0b132b;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.texto-secundario {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.divisor-diamante {
+  width: 6px;
+  height: 6px;
+  background-color: #c9a756;
+  transform: rotate(45deg);
+  margin: 5px 0 40px 0;
+}
+
+/* --- BOTÓN TIPO SELLO --- */
+.btn-mapa-elegante {
+  margin-top: 15px;
+  display: inline-block;
+  background-color: transparent;
+  color: #1a2a5c;
+  border: 1px solid #1a2a5c;
+  padding: 14px 40px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn-mapa-elegante:hover {
+  background-color: #1a2a5c;
+  color: #ffffff;
+}

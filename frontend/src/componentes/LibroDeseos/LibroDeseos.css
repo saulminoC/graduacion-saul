@@ -1,0 +1,105 @@
+.libro-contenedor {
+  padding: 20px 20px 100px 20px;
+  background-color: #fdfbf7; /* Mismo fondo continuo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.libro-tarjeta {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+.libro-borde-interno {
+  border: 1px solid #e5d8b8;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.libro-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #1a2a5c;
+  letter-spacing: 2px;
+}
+
+.linea-decorativa-corta {
+  width: 40px;
+  height: 2px;
+  background-color: #c9a756;
+  margin: 15px 0 25px 0;
+}
+
+.libro-subtitulo {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* --- FORMULARIO --- */
+.libro-formulario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-grupo input,
+.input-grupo textarea {
+  width: 100%;
+  padding: 15px;
+  background-color: #faf9f5;
+  border: 1px solid #e5d8b8;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #1a2a5c;
+  transition: all 0.3s ease;
+  outline: none;
+  resize: vertical; /* Permite hacer el textarea más grande solo hacia abajo */
+}
+
+.input-grupo input:focus,
+.input-grupo textarea:focus {
+  border-color: #b58d34;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1px #b58d34; /* Halo dorado sutil */
+}
+
+.input-grupo input::placeholder,
+.input-grupo textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* --- BOTÓN --- */
+.btn-enviar-deseo {
+  margin-top: 10px;
+  background-color: #1a2a5c; /* Fondo azul marino */
+  color: #ffffff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-enviar-deseo:hover {
+  background-color: #0b132b;
+  box-shadow: 0 5px 15px rgba(26, 42, 92, 0.3);
+}
+
+.btn-enviar-deseo.btn-exito {
+  background-color: #b58d34; /* Se pone dorado al enviar con éxito */
+  pointer-events: none; /* Evita doble clic */
+}

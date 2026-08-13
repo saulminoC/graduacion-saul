@@ -1,0 +1,105 @@
+.musica-contenedor {
+  padding: 20px 20px 60px 20px;
+  background-color: #fdfbf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.musica-tarjeta {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+.musica-borde-interno {
+  border: 1px solid #e5d8b8;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.icono-musica {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.musica-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #1a2a5c;
+  letter-spacing: 2px;
+}
+
+.musica-subtitulo {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.musica-formulario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Aprovechamos las clases que ya existen de los inputs en tu proyecto global */
+
+.btn-enviar-musica {
+  margin-top: 10px;
+  background-color: #1a2a5c;
+  color: #ffffff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-enviar-musica:hover {
+  background-color: #0b132b;
+  box-shadow: 0 5px 15px rgba(26, 42, 92, 0.3);
+}
+
+.btn-enviar-musica.btn-exito {
+  background-color: #b58d34;
+  pointer-events: none;
+}
+
+/* --- ESTILO DEL EASTER EGG --- */
+.mensaje-easter-egg {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #0b132b; /* Azul marino más oscuro */
+  color: #c9a756; /* Texto dorado */
+  border: 1px solid #c9a756;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  
+  /* Animación para que aparezca suavemente */
+  animation: deslizarEasterEgg 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes deslizarEasterEgg {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
