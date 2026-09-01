@@ -11,7 +11,7 @@ export function DetallesEvento() {
 
       <div className="tarjeta-unica-evento">
         <div className="tarjeta-borde-interno">
-          <div className="icono-elegante">🥂</div>
+          {/*<div className="icono-elegante">🥂</div>*/}
           <h3 className="titulo-evento">Recepción y Fiesta</h3>
           
           <div className="info-bloque">

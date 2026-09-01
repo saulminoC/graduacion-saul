@@ -1,4 +1,6 @@
 import './Sobre.css';
+// Importamos la imagen como un módulo de React para que Vite controle la ruta
+import imagenSobre from '../../assets/sobre-generado.webp'; 
 
 // Le decimos a TypeScript qué propiedades va a recibir
 interface SobreProps {
@@ -26,7 +28,7 @@ export function Sobre({ abierto, setAbierto }: SobreProps) {
         onClick={() => setAbierto(true)}
       >
         <img 
-          src="/sobre-generado.webp" 
+          src={imagenSobre} 
           alt="Sobre de Graduación" 
           className="sobre-img"
         />

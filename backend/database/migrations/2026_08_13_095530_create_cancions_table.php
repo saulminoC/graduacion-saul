@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cancions', function (Blueprint $table) {
+        Schema::create('grad_cancions', function (Blueprint $table) {
             $table->id();
             $table->string('cancion');
             $table->string('nombre')->nullable(); // Opcional, por si la mandan anónima

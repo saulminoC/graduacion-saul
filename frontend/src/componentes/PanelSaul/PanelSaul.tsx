@@ -18,49 +18,76 @@ interface Cancion {
 interface Foto {
   id: number;
   ruta: string;
+  nombre: string;
+  url: string;
   created_at: string;
 }
+
+const API_URL = import.meta.env.VITE_API_URL as string
 
 export function PanelSaul() {
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
   const [canciones, setCanciones] = useState<Cancion[]>([]);
   const [fotos, setFotos] = useState<Foto[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [errores, setErrores] = useState<string[]>([]);
+  const [albumSeleccionado, setAlbumSeleccionado] = useState<string | null>(null);
+
+  const cargarDatos = async () => {
+    const erroresActuales: string[] = [];
+
+    const [resMensajes, resCanciones, resFotos] = await Promise.allSettled([
+      fetch(`${API_URL}/mensajes`),
+      fetch(`${API_URL}/canciones`),
+      fetch(`${API_URL}/fotos`),
+    ]);
+
+    if (resMensajes.status === 'fulfilled' && resMensajes.value.ok) {
+      setMensajes(await resMensajes.value.json());
+    } else {
+      erroresActuales.push('mensajes');
+    }
+
+    if (resCanciones.status === 'fulfilled' && resCanciones.value.ok) {
+      setCanciones(await resCanciones.value.json());
+    } else {
+      erroresActuales.push('canciones');
+    }
+
+    if (resFotos.status === 'fulfilled' && resFotos.value.ok) {
+      setFotos(await resFotos.value.json());
+    } else {
+      erroresActuales.push('fotos');
+    }
+
+    setErrores(erroresActuales);
+  };
 
   useEffect(() => {
-    // Hacemos fetch a los tres endpoints al mismo tiempo para máxima eficiencia
-    const cargarDatos = async () => {
-      try {
-        const [resMensajes, resCanciones, resFotos] = await Promise.all([
-          fetch(`${import.meta.env.VITE_API_URL}/mensajes`),
-          fetch(`${import.meta.env.VITE_API_URL}/canciones`),
-          fetch(`${import.meta.env.VITE_API_URL}/fotos`)
-        ]);
-
-        if (resMensajes.ok) setMensajes(await resMensajes.json());
-        if (resCanciones.ok) setCanciones(await resCanciones.json());
-        if (resFotos.ok) setFotos(await resFotos.json());
-      } catch (error) {
-        console.error("Error al cargar el panel:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     cargarDatos();
   }, []);
 
-  if (loading) {
-    return <div className="panel-loading">Cargando panel de control...</div>;
-  }
+  // Agrupamos las fotos por carpeta/nombre de invitado
+  const albumes = fotos.reduce<Record<string, Foto[]>>((acc, foto) => {
+    if (!acc[foto.nombre]) acc[foto.nombre] = [];
+    acc[foto.nombre].push(foto);
+    return acc;
+  }, {});
+
+  const fotosDelAlbum = albumSeleccionado ? albumes[albumSeleccionado] ?? [] : [];
 
   return (
     <div className="panel-contenedor">
       <header className="panel-header">
-        <h1 className="panel-titulo">Panel de Administración</h1>
-        <p className="panel-subtitulo">Licenciatura en Ciencias de la Computación • BUAP</p>
-        <div className="linea-decorativa"></div>
+        <button className="panel-btn-actualizar" onClick={cargarDatos}>
+          ↻ Actualizar
+        </button>
       </header>
+
+      {errores.length > 0 && (
+        <div className="panel-error-banner">
+          No se pudieron cargar: {errores.join(', ')}. Intenta actualizar de nuevo.
+        </div>
+      )}
 
       {/* --- SECCIÓN DE MENSAJES (LIBRO DE DESEOS) --- */}
       <section className="panel-seccion">
@@ -98,25 +125,58 @@ export function PanelSaul() {
         </div>
       </section>
 
-      {/* --- SECCIÓN DE FOTOS (GALERÍA) --- */}
+      {/* --- SECCIÓN DE FOTOS (ÁLBUMES POR INVITADO) --- */}
       <section className="panel-seccion">
-        <h2 className="seccion-titulo">Fotos de la Fiesta ({fotos.length})</h2>
-        <div className="panel-grid-fotos">
-          {fotos.length === 0 ? (
-            <p className="vacio">Aún no hay fotos en el servidor.</p>
-          ) : (
-            fotos.map((f) => (
-              <div key={f.id} className="panel-foto-marco">
-                {/* Ajusta la URL base según tu servidor de Laravel storage */}
-                <img 
-                  src={`http://localhost:8000/storage/${f.ruta}`} 
-                  alt="Recuerdo de la fiesta" 
-                  className="panel-foto-img" 
-                />
-              </div>
-            ))
-          )}
-        </div>
+        {albumSeleccionado === null ? (
+          <>
+            <h2 className="seccion-titulo">Álbumes de Fotos ({Object.keys(albumes).length})</h2>
+            <div className="panel-grid-albumes">
+              {Object.keys(albumes).length === 0 ? (
+                <p className="vacio">Aún no hay fotos en el servidor.</p>
+              ) : (
+                Object.entries(albumes).map(([nombreAlbum, fotosAlbum]) => (
+                  <button
+                    key={nombreAlbum}
+                    className="panel-album-card"
+                    onClick={() => setAlbumSeleccionado(nombreAlbum)}
+                  >
+                    <div className="panel-album-portada">
+                      <img
+                        src={fotosAlbum[0].url}
+                        alt={`Álbum de ${nombreAlbum}`}
+                        loading="lazy"
+                      />
+                    </div>
+                    <span className="panel-album-nombre">{nombreAlbum}</span>
+                    <span className="panel-album-contador">{fotosAlbum.length} foto{fotosAlbum.length !== 1 ? 's' : ''}</span>
+                  </button>
+                ))
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="panel-album-header">
+              <button className="panel-btn-volver" onClick={() => setAlbumSeleccionado(null)}>
+                ← Volver a álbumes
+              </button>
+              <h2 className="seccion-titulo panel-album-titulo">
+                {albumSeleccionado} ({fotosDelAlbum.length})
+              </h2>
+            </div>
+            <div className="panel-grid-fotos">
+              {fotosDelAlbum.map((f) => (
+                <div key={f.id} className="panel-foto-marco">
+                  <img 
+                    src={f.url}
+                    alt="Recuerdo de la fiesta" 
+                    className="panel-foto-img" 
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </section>
     </div>
   );

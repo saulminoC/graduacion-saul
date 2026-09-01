@@ -11,7 +11,7 @@ class Mensaje extends Model
 
     // Aquí le decimos a Laravel qué campos se pueden llenar de forma masiva
     protected $fillable = [
-        'nombre',
+        'grad_nombre',
         'mensaje',
     ];
 }

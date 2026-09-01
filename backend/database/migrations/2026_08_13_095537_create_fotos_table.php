@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fotos', function (Blueprint $table) {
+        Schema::create('grad_fotos', function (Blueprint $table) {
             $table->id();
             $table->string('ruta'); // Aquí guardaremos la ruta de la imagen
             $table->timestamps();

@@ -59,7 +59,7 @@ export function SugerenciaMusical() {
     <section className="musica-contenedor">
       <div className="musica-tarjeta">
         <div className="musica-borde-interno">
-          <div className="icono-musica">🎵</div>
+          {/*<div className="icono-musica">🎵</div>*/}
           <h2 className="musica-titulo">El Soundtrack de la Noche</h2>
           <div className="linea-decorativa-corta"></div>
           <p className="musica-subtitulo">

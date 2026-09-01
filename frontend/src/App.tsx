@@ -26,7 +26,6 @@ function VistaInvitacion() {
           <LibroDeseos />
           <Galeria />
           <SugerenciaMusical />
-          <PanelSaul />
         </div>
       )}
     </>
@@ -34,12 +33,7 @@ function VistaInvitacion() {
 }
 
 function VistaPanelSaul() {
-  return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>🎓 Panel de Administración - Saúl</h1>
-      <p>Aquí veremos las asistencias y los mensajes de felicitación.</p>
-    </div>
-  );
+  return <PanelSaul />;
 }
 
 export default function App() {

@@ -11,6 +11,6 @@ class Foto extends Model
 
     protected $fillable = [
         'ruta',
-        'nombre',
+        'grad_nombre',
     ];
 }

@@ -12,6 +12,6 @@ class Cancion extends Model
     // Los campos permitidos para la tabla de canciones
     protected $fillable = [
         'cancion',
-        'nombre',
+        'grad_nombre',
     ];
 }
